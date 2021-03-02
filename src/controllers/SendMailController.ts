@@ -28,21 +28,22 @@ class SendMailController {
         }
 
         const surveyUserAlreadyExists = await surveysUsersRepository.findOne({
-            where: [{user_id: user.id, value: null}],
+            where: {user_id: user.id, value: null},
             relations: ["user", "survey"]
         })
+
+        const npsPath = resolve(__dirname, "..", "views", "emails", "npsMail.hbs")
 
         const variables = {
             name: user.name,
             title: survey.title,
             description: survey.description,
-            user_id: user.id,
+            id: "",    // Caso não exista um SurveyUser para evitar erros.
             link: process.env.URL_MAIL
         }
 
-        const npsPath = resolve(__dirname, "..", "views", "emails", "npsMail.hbs")
-
         if(surveyUserAlreadyExists) {
+            variables.id = surveyUserAlreadyExists.id   // Se existir, agora o id vai estar correto.
             await sendMailService.execute(email, survey.title, variables, npsPath)
             return res.status(200).json(surveyUserAlreadyExists)
         }
@@ -53,6 +54,8 @@ class SendMailController {
         })
 
         await surveysUsersRepository.save(surveyUser) 
+
+        variables.id = surveyUser.id   // Nesse ponto ele já vai exisitr um id, então o id deixa de ser vazio.
 
         await sendMailService.execute(email, survey.title, variables, npsPath)
 
