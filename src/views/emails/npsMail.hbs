@@ -1,0 +1,63 @@
+<style>
+    .container{
+        width: 800px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;  
+    }
+
+    .value {
+        padding: 10px;
+        background: #8257e6;
+        color: white;
+        border-radius: 6px;
+        width:15px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .level {
+        display: flex;
+        margin: 15px 10px;
+        justify-content: space-between;
+        width: 370px;
+        color: grey;
+    }
+
+    .answers {
+        width: 370px;
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="container">
+    <label>Olá, <strong>{{variables.name}}</strong>! Tudo bem?</label>
+    <h3>{{variables.title}}</h3>
+    <br>
+    <strong>{{variables.description}}</strong>
+
+    <div class="level">
+        <span>Pouco Provável</span>
+        <span>Muito Provável</span>
+    </div>
+
+    <div class="answers">
+        <a href="{{link}}/1?u={{variables.user_id}}" class="value">1</a>
+        <a href="{{link}}/2?u={{variables.user_id}}" class="value">2</a>
+        <a href="{{link}}/3?u={{variables.user_id}}" class="value">3</a>
+        <a href="{{link}}/4?u={{variables.user_id}}" class="value">4</a>
+        <a href="{{link}}/5?u={{variables.user_id}}" class="value">5</a>
+        <a href="{{link}}/6?u={{variables.user_id}}" class="value">6</a>
+        <a href="{{link}}/7?u={{variables.user_id}}" class="value">7</a>
+        <a href="{{link}}/8?u={{variables.user_id}}" class="value">8</a>
+        <a href="{{link}}/9?u={{variables.user_id}}" class="value">9</a>
+        <a href="{{link}}/10?u={{variables.user_id}}" class="value">10</a>
+    </div>
+    <br>
+    <br>
+    <strong>Sua opinião é muito importante para nós.</strong>
+    <h3>Equipe | <strong>NLW</strong></h3>
+</div>
